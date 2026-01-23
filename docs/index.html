@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The Enlightened Path provides compassionate, practical help with essential bills and critical repairs." />
+  <title>The Enlightened Path • Website Preview (V2)</title>
+  <style>
+    :root{
+      --ink:#0b1220;
+      --muted:#4b5563;
+      --muted2:#6b7280;
+      --surface: rgba(255,255,255,.78);
+      --stroke: rgba(15, 23, 42, .10);
+      --shadow: 0 22px 70px rgba(2,6,23,.12);
+      --shadow2: 0 12px 28px rgba(2,6,23,.10);
+      --radius: 22px;
+      --brand:#1d4ed8;
+      --brand2:#06b6d4;
+      --warm:#f97316;
+      --ring: rgba(29,78,216,.22);
+      --max: 1160px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 680px at 10% 5%, rgba(29,78,216,.18), transparent 58%),
+        radial-gradient(1000px 680px at 90% 10%, rgba(6,182,212,.14), transparent 58%),
+        radial-gradient(900px 680px at 60% 95%, rgba(249,115,22,.10), transparent 58%),
+        linear-gradient(180deg, #f7f9ff 0%, #eef6ff 55%, #f7f9ff 100%);
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode:multiply;
+      opacity:.34;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(16px);
+      background: rgba(247,249,255,.78);
+      border-bottom: 1px solid rgba(15,23,42,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900}
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background:
+        radial-gradient(16px 16px at 30% 28%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, rgba(29,78,216,.98), rgba(6,182,212,.86));
+      box-shadow: 0 14px 34px rgba(29,78,216,.16);
+      border: 1px solid rgba(15,23,42,.08);
+    }
+    .brandTitle{font-size:15px; line-height:1}
+    .brandSub{font-size:12px; color:var(--muted2); line-height:1.25; font-weight:700}
+
+    .navlinks{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+    .navlinks a{
+      font-size:14px; color:var(--muted);
+      padding:8px 10px; border-radius:12px;
+      border: 1px solid transparent;
+      transition: .16s ease;
+    }
+    .navlinks a:hover{color:var(--ink); border-color: rgba(15,23,42,.10); background: rgba(255,255,255,.72)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px; padding:10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow2);
+      font-weight:900; font-size:14px;
+      cursor:pointer; user-select:none;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.94); border-color: rgba(15,23,42,.14)}
+    .btn:active{transform: translateY(0)}
+    .btn.primary{
+      color:#fff;
+      border-color: rgba(29,78,216,.22);
+      background: linear-gradient(135deg, rgba(29,78,216,.98), rgba(6,182,212,.92));
+    }
+    .btn.primary:hover{filter:saturate(1.05) brightness(1.02)}
+    .btn.warm{
+      color:#fff;
+      border-color: rgba(249,115,22,.22);
+      background: linear-gradient(135deg, rgba(249,115,22,.96), rgba(245,158,11,.92));
+    }
+
+    .floatDonate{
+      position:fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 40;
+      display:none;
+    }
+    .floatDonate .btn{border-radius: 999px; padding: 12px 16px}
+    @media (min-width: 961px){
+      .floatDonate{display:block}
+    }
+
+    .hero{padding: 46px 0 18px;}
+    .heroGrid{display:grid; grid-template-columns: 1.08fr .92fr; gap: 18px; align-items:stretch;}
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCopy{padding: 28px 26px 26px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.82);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight:800;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4.8vw, 56px);
+      line-height: 1.03;
+      letter-spacing: -1.0px;
+    }
+    .lead{color: var(--muted); font-size: 17px; line-height: 1.68; max-width: 64ch}
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top: 18px}
+
+    .miniRow{
+      display:grid; grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .pill{
+      padding: 12px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.78);
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .pill b{display:block; font-size:14px}
+    .pill span{font-size:12.8px; color: var(--muted2); line-height:1.45; font-weight:700}
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      margin-top: 5px;
+      background: linear-gradient(135deg, rgba(29,78,216,.98), rgba(6,182,212,.92));
+      box-shadow: 0 10px 20px rgba(29,78,216,.14);
+      flex: 0 0 auto;
+    }
+
+    .art{position:relative; height: 100%; min-height: 350px; padding: 16px;}
+    .artInner{
+      height: 100%;
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid rgba(15,23,42,.10);
+      background:
+        radial-gradient(540px 320px at 18% 30%, rgba(29,78,216,.16), transparent 60%),
+        radial-gradient(520px 320px at 75% 20%, rgba(6,182,212,.14), transparent 60%),
+        radial-gradient(520px 320px at 75% 90%, rgba(249,115,22,.10), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.78));
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+    }
+    .artCaption{
+      position:absolute; left: 18px; bottom: 18px; right: 18px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(15,23,42,.10);
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight:750;
+    }
+
+    section{padding: 26px 0}
+    .sectionTitle{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom: 14px;}
+    h2{margin:0; font-size: 24px; letter-spacing:-.35px}
+    .sub{margin: 6px 0 0; color: var(--muted); font-size: 14.7px; line-height:1.6; font-weight:650}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap: 14px}
+
+    .tile{
+      padding: 18px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.84);
+      border:1px solid rgba(15,23,42,.10);
+      box-shadow: var(--shadow2);
+      transition: transform .14s ease, background .14s ease, border-color .14s ease;
+    }
+    .tile:hover{transform: translateY(-2px); background: rgba(255,255,255,.96); border-color: rgba(15,23,42,.14)}
+    .tile h3{margin: 10px 0 6px; font-size: 18px}
+    .tile p{margin:0; color: var(--muted); font-size: 14.8px; line-height:1.7; font-weight:650}
+    .fine{font-size:12.8px; color: var(--muted2); line-height:1.5; font-weight:700}
+
+    .icon{
+      width: 46px; height: 46px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: rgba(29,78,216,.07);
+      border: 1px solid rgba(29,78,216,.14);
+    }
+
+    .steps{display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px;}
+    .stepNum{
+      font-weight:950;
+      width:32px; height:32px; border-radius:12px;
+      display:grid; place-items:center;
+      color:#fff;
+      background: linear-gradient(135deg, rgba(29,78,216,.98), rgba(6,182,212,.92));
+      box-shadow: 0 12px 24px rgba(29,78,216,.14);
+      border: 1px solid rgba(29,78,216,.18);
+    }
+
+    .callout{
+      display:grid; grid-template-columns: 1.08fr .92fr;
+      gap: 14px; padding: 18px; align-items: center;
+      border-radius: calc(var(--radius) + 4px);
+      background: linear-gradient(135deg, rgba(29,78,216,.12), rgba(6,182,212,.10));
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: var(--shadow);
+      position:relative; overflow:hidden;
+    }
+    .callout::after{
+      content:"";
+      position:absolute;
+      inset:-180px -180px auto auto;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle at 30% 30%, rgba(29,78,216,.16), rgba(29,78,216,0) 62%);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+
+    form{display:grid; gap:10px}
+    label{font-size:13px; color: var(--muted); font-weight:900}
+    input, textarea, select{
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.96);
+      color: var(--ink);
+      outline:none;
+      box-shadow: 0 0 0 0 rgba(29,78,216,0);
+      transition: box-shadow .12s ease, border-color .12s ease;
+      font-weight:700;
+    }
+    input:focus, textarea:focus, select:focus{box-shadow: 0 0 0 7px var(--ring); border-color: rgba(29,78,216,.38)}
+    textarea{min-height: 110px; resize: vertical}
+
+    .donateCard{display:grid; grid-template-columns: .95fr 1.05fr; gap: 14px; align-items: stretch;}
+    .donateTiers{display:grid; gap:10px; margin-top: 12px}
+    .tier{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      padding: 12px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.88);
+    }
+    .tier b{font-size:14px}
+    .tier span{display:block; margin-top:3px; font-size:12.6px; color: var(--muted2); font-weight:750; line-height:1.4}
+    .tier .amt{
+      font-weight:950;
+      padding: 8px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.92);
+    }
+
+    footer{padding: 26px 0 42px; color: var(--muted)}
+    .foot{
+      display:flex; gap: 14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      border-top: 1px solid rgba(15,23,42,.08);
+      padding-top: 18px;
+    }
+    .foot small{display:block; max-width: 72ch; line-height:1.7; font-weight:700}
+
+    @media (max-width: 960px){
+      .heroGrid{grid-template-columns: 1fr;}
+      .grid3{grid-template-columns: 1fr;}
+      .grid2{grid-template-columns: 1fr;}
+      .steps{grid-template-columns: 1fr;}
+      .callout{grid-template-columns: 1fr;}
+      .donateCard{grid-template-columns: 1fr;}
+      .navlinks{display:none}
+      .miniRow{grid-template-columns: 1fr}
+    }
+
+    @media (prefers-reduced-motion: no-preference){
+      .fadeIn{animation: fadeIn .6s ease both;}
+      @keyframes fadeIn{
+        from{opacity:0; transform: translateY(8px)}
+        to{opacity:1; transform: translateY(0)}
+      }
+    }
+
+    .versionBadge{
+      position:absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(15,23,42,.10);
+      font-size: 12.5px;
+      font-weight: 950;
+      color: var(--muted);
+      box-shadow: var(--shadow2);
+    }
+  </style>
+</head>
+<body>
+  <div class="floatDonate">
+    <a class="btn warm" href="#donate">Donate</a>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="The Enlightened Path">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="brandTitle">The Enlightened Path</div>
+          <div class="brandSub">Hope • Stability • Practical support</div>
+        </div>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#mission">Mission</a>
+        <a href="#programs">Programs</a>
+        <a href="#steps">How it works</a>
+        <a href="#apply">Request help</a>
+        <a href="#donate">Donate</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn" href="#apply">Request Help</a>
+        <a class="btn warm" href="#donate">Donate</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero fadeIn">
+      <div class="heroGrid">
+        <div class="card heroCopy">
+          <div class="versionBadge">PREVIEW V2 • d29924</div>
+          <div class="kicker"><span aria-hidden="true">🌱</span> Faith-neutral help that protects dignity</div>
+          <h1>Holding on to hope — together.</h1>
+          <p class="lead">
+            The Enlightened Path provides compassionate, practical assistance to individuals and families facing temporary hardship —
+            helping with essential bills and urgent repairs so people can regain stability and move forward with confidence.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn primary" href="#apply">Apply for Assistance</a>
+            <a class="btn" href="#steps">How It Works</a>
+            <a class="btn warm" href="#donate">Donate</a>
+          </div>
+
+          <div class="miniRow" aria-label="Highlights">
+            <div class="pill"><div class="dot"></div><div><b>Essential bills</b><span>Rent, utilities, and other necessities (when eligible).</span></div></div>
+            <div class="pill"><div class="dot"></div><div><b>Urgent repairs</b><span>Safety, housing stability, and work-related needs.</span></div></div>
+          </div>
+        </div>
+
+        <div class="card art" aria-label="Homepage image: Holding On to Hope (symbolic)">
+          <div class="artInner">
+            <svg width="520" height="360" viewBox="0 0 520 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hands holding a light of hope">
+              <defs>
+                <linearGradient id="hopeGlow" x1="120" y1="70" x2="420" y2="320" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#1D4ED8" stop-opacity="0.96"/>
+                  <stop offset="0.55" stop-color="#06B6D4" stop-opacity="0.86"/>
+                  <stop offset="1" stop-color="#F97316" stop-opacity="0.62"/>
+                </linearGradient>
+                <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="12" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <circle cx="260" cy="125" r="86" fill="url(#hopeGlow)" opacity="0.25" filter="url(#blur)"/>
+              <circle cx="260" cy="125" r="52" fill="#F97316" opacity="0.18" filter="url(#blur)"/>
+
+              <g opacity="0.38" stroke="#1D4ED8" stroke-width="3" stroke-linecap="round">
+                <path d="M260 22v34"/>
+                <path d="M195 38l18 28"/>
+                <path d="M325 38l-18 28"/>
+                <path d="M160 78l30 18"/>
+                <path d="M360 78l-30 18"/>
+              </g>
+
+              <path d="M92 305c34-34 78-40 118-22 17 8 26 18 50 18 24 0 33-10 50-18 40-18 84-12 118 22" stroke="rgba(2,6,23,.24)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M168 300c20 16 40 20 92 20s72-4 92-20" stroke="rgba(2,6,23,.20)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M190 268c16 10 34 14 70 14s54-4 70-14" stroke="rgba(2,6,23,.16)" stroke-width="6" stroke-linecap="round"/>
+
+              <path d="M210 165c0-28 22-50 50-50s50 22 50 50c0 20-10 36-20 48-8 10-12 16-12 28h-36c0-12-4-18-12-28-10-12-20-28-20-48Z"
+                    fill="url(#hopeGlow)" opacity="0.92" filter="url(#blur)"/>
+              <rect x="238" y="244" width="44" height="20" rx="10" fill="rgba(255,255,255,.82)" stroke="rgba(2,6,23,.12)"/>
+            </svg>
+          </div>
+          <div class="artCaption">Homepage: <b>Holding On to Hope</b> (symbolic, donor-safe — no faces).</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission" class="fadeIn">
+      <div class="sectionTitle">
+        <div>
+          <h2>Mission & Vision</h2>
+          <p class="sub">Simple, respectful, and accountable — designed for people who need help and those who want to give.</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2l3 6 7 .8-5.2 4.6 1.6 6.9L12 17.9 5.6 20.3l1.6-6.9L2 8.8 9 8z" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Mission</h3>
+          <p>
+            The mission of The Enlightened Path is to provide compassionate and practical assistance to individuals and families experiencing
+            temporary financial hardship by helping them meet essential obligations, including critical bill payments and necessary repairs.
+          </p>
+          <p class="fine" style="margin-top:10px">Focus: stability, dignity, and responsible distribution.</p>
+        </div>
+
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21s-7-4.4-9.2-9.1C1 8 3.3 5 6.7 5c1.9 0 3.4.9 4.3 2 0.9-1.1 2.4-2 4.3-2C18.7 5 21 8 21.2 11.9 19 16.6 12 21 12 21z" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Vision</h3>
+          <p>
+            We envision a community where short-term crises don’t permanently set people back — because timely, respectful support
+            creates a clear path toward stability, resilience, and renewed hope.
+          </p>
+          <p class="fine" style="margin-top:10px">Hope that leads to lasting well-being.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="fadeIn">
+      <div class="sectionTitle">
+        <div>
+          <h2>How We Help</h2>
+          <p class="sub">Straightforward programs for real-life emergencies.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 7h16v12H4z" stroke="rgba(2,6,23,.55)" stroke-width="2"/>
+              <path d="M4 10h16" stroke="rgba(2,6,23,.55)" stroke-width="2"/>
+              <path d="M7 14h4" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Essential Bill Assistance</h3>
+          <p>Short-term help with necessities like utilities and rent (when eligible). We aim to pay providers directly whenever possible.</p>
+          <p class="fine" style="margin-top:10px">Examples: shutoff notice, past-due essentials.</p>
+        </div>
+
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 18h16" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 18l2-9h8l2 9" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 9l1-3h4l1 3" stroke="rgba(2,6,23,.55)" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Essential Repair Assistance</h3>
+          <p>Support for repairs impacting safety, housing stability, or employment (when eligible).</p>
+          <p class="fine" style="margin-top:10px">Examples: plumbing leak, work vehicle repair, safety hazard.</p>
+        </div>
+
+        <div class="tile">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3v18" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M5 9c2.2-3 6-4 7-4s4.8 1 7 4" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 15c1.6 2.2 3.8 3 5 3s3.4-.8 5-3" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Stability Support & Referrals</h3>
+          <p>When appropriate, we connect people to trusted community resources to reduce future hardship.</p>
+          <p class="fine" style="margin-top:10px">Examples: local aid programs, counseling, employment resources.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps" class="fadeIn">
+      <div class="sectionTitle">
+        <div>
+          <h2>How It Works</h2>
+          <p class="sub">A clear, simple process — built for speed and accountability.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="tile">
+          <div style="display:flex; gap:10px; align-items:flex-start">
+            <div class="stepNum">1</div>
+            <div>
+              <h3 style="margin:0 0 6px">Submit a request</h3>
+              <p>Tell us what’s happening and what you need help with. Keep it simple and honest.</p>
+              <p class="fine" style="margin-top:8px">Suggested docs: bill notice, repair estimate.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div style="display:flex; gap:10px; align-items:flex-start">
+            <div class="stepNum">2</div>
+            <div>
+              <h3 style="margin:0 0 6px">Equity-based review</h3>
+              <p>We review requests based on documented need, urgency, and available funds.</p>
+              <p class="fine" style="margin-top:8px">Dignity-first. Fair. Neutral.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tile">
+          <div style="display:flex; gap:10px; align-items:flex-start">
+            <div class="stepNum">3</div>
+            <div>
+              <h3 style="margin:0 0 6px">Direct support</h3>
+              <p>When possible, payments go directly to providers or vendors for accountability.</p>
+              <p class="fine" style="margin-top:8px">Help that restores stability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply" class="fadeIn">
+      <div class="sectionTitle">
+        <div>
+          <h2>Request Assistance</h2>
+          <p class="sub">Simple intake form. You can connect it to email when you’re ready.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div>
+          <div class="tile" style="background: rgba(255,255,255,.88); box-shadow:none; margin-bottom:12px">
+            <div style="display:flex; align-items:center; gap:12px">
+              <div class="icon" aria-hidden="true" style="background: rgba(6,182,212,.08); border-color: rgba(6,182,212,.18)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 3v18" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M5 7h14" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M7 7l-2 5" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M17 7l2 5" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 12c2.4 2.6 5.2 3.8 8 3.8S17.6 14.6 20 12" stroke="rgba(2,6,23,.55)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <b>Equity-based review</b>
+                <div class="fine" style="margin-top:2px">Fair, documented, and respectful — focused on safety and stability.</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin:0 0 8px; font-size:20px">Need help with a bill or essential repair?</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.7; font-weight:650">
+            Submit a request and we’ll review it based on documented need and available resources.
+            For accountability, we recommend paying providers directly whenever possible.
+          </p>
+          <p class="fine" style="margin-top:12px">Suggested documents: bill notice, repair estimate, proof of income (if available).</p>
+        </div>
+
+        <div class="tile" style="background: rgba(255,255,255,.88); box-shadow:none">
+          <form id="helpForm" action="#" method="post" novalidate>
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" autocomplete="name" required placeholder="Your full name" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" />
+            </div>
+            <div>
+              <label for="need">Request type</label>
+              <select id="need" name="need" required>
+                <option value="">Select one…</option>
+                <option>Bill assistance</option>
+                <option>Essential repair</option>
+                <option>Other urgent need</option>
+              </select>
+            </div>
+            <div>
+              <label for="amount">Estimated amount needed (optional)</label>
+              <input id="amount" name="amount" inputmode="decimal" placeholder="$" />
+            </div>
+            <div>
+              <label for="message">Briefly describe the situation</label>
+              <textarea id="message" name="message" required placeholder="What happened, what you need help with, and your timeline…"></textarea>
+            </div>
+            <button class="btn primary" type="submit">Submit request</button>
+            <div id="formNote" class="fine"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="donate" class="fadeIn">
+      <div class="sectionTitle">
+        <div>
+          <h2>Donate</h2>
+          <p class="sub">User-friendly giving options that feel simple and trustworthy.</p>
+        </div>
+      </div>
+
+      <div class="donateCard">
+        <div class="card art" aria-label="Donation image: trust and impact">
+          <div class="artInner">
+            <svg width="520" height="360" viewBox="0 0 520 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trust and impact symbols">
+              <defs>
+                <linearGradient id="donG" x1="120" y1="70" x2="420" y2="320" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#1D4ED8" stop-opacity="0.92"/>
+                  <stop offset="0.55" stop-color="#06B6D4" stop-opacity="0.82"/>
+                  <stop offset="1" stop-color="#F97316" stop-opacity="0.55"/>
+                </linearGradient>
+                <filter id="soft2" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="10" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <circle cx="260" cy="120" r="90" fill="url(#donG)" opacity="0.18" filter="url(#soft2)"/>
+              <path d="M260 70c55 18 98 36 98 36v78c0 58-44 98-98 122-54-24-98-64-98-122v-78s43-18 98-36Z"
+                    fill="rgba(255,255,255,.82)" stroke="rgba(2,6,23,.14)" stroke-width="3"/>
+              <path d="M215 170c0-16 13-28 29-26 11 1 19 7 24 15 5-8 13-14 24-15 16-2 29 10 29 26 0 22-28 37-53 55-25-18-53-33-53-55Z"
+                    fill="url(#donG)" opacity="0.92" filter="url(#soft2)"/>
+
+              <rect x="145" y="230" width="230" height="70" rx="18" fill="rgba(255,255,255,.86)" stroke="rgba(2,6,23,.12)" stroke-width="3"/>
+              <path d="M175 262l18 18 38-42" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M260 262h85" stroke="rgba(2,6,23,.18)" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="artCaption">Donate: trust + impact (simple, calm, donor-friendly).</div>
+        </div>
+
+        <div class="tile">
+          <h3 style="margin:0 0 8px">Your donation keeps hope alive</h3>
+          <p>Gifts help cover essential bills and urgent repairs that keep families safe, housed, and able to work.</p>
+
+          <div class="donateTiers" aria-label="Donation tiers">
+            <div class="tier">
+              <div><b>Keep the lights on</b><span>Supports part of an essential utility bill.</span></div>
+              <div class="amt">$25</div>
+            </div>
+            <div class="tier">
+              <div><b>Stability boost</b><span>Helps prevent a shutoff or late fee from snowballing.</span></div>
+              <div class="amt">$50</div>
+            </div>
+            <div class="tier">
+              <div><b>Emergency relief</b><span>Contributes toward urgent repairs or critical bills.</span></div>
+              <div class="amt">$100</div>
+            </div>
+          </div>
+
+          <div style="display:grid; gap:10px; margin-top:14px">
+            <a class="btn warm" href="#" onclick="return fakeLink(event,'Replace this with your PayPal/Stripe/Donorbox link.')">Donate online</a>
+            <a class="btn" href="#" onclick="return fakeLink(event,'Add your mailing address for checks or a donation drop-off location.')">Donate by mail</a>
+          </div>
+
+          <div class="tile" style="margin-top:14px; background: rgba(255,255,255,.90); box-shadow:none">
+            <b>Transparency promise</b>
+            <p class="fine" style="margin-top:8px">
+              We document assistance decisions and prioritize paying vendors directly when possible.
+              We do not promise assistance; decisions depend on eligibility, documentation, and available funds.
+            </p>
+          </div>
+
+          <p class="fine" style="margin-top:12px">Once approved as a 501(c)(3), donations may be tax-deductible as allowed by law.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="fadeIn">
+      <div class="sectionTitle">
+        <div>
+          <h2>Contact</h2>
+          <p class="sub">Replace placeholders with your official contact information.</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="tile">
+          <h3 style="margin:0 0 8px">Get in touch</h3>
+          <p style="margin:0 0 12px; color:var(--muted); line-height:1.85; font-weight:700">
+            Email: <b style="color:var(--ink)">you@example.org</b><br/>
+            Phone: <b style="color:var(--ink)">(000) 000-0000</b><br/>
+            Service area: <b style="color:var(--ink)">Nevada</b>
+          </p>
+          <p class="fine">Tip: use a domain email like <b>help@theenlightenedpath.org</b> for a more professional feel.</p>
+        </div>
+        <div class="tile">
+          <h3 style="margin:0 0 8px">Legal</h3>
+          <p class="fine" style="margin:0">
+            The Enlightened Path is organized as a Nevada nonprofit corporation and is pursuing recognition as a 501(c)(3) public charity.
+            This website is for informational purposes only and does not guarantee assistance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="fadeIn">
+      <div class="foot">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px">
+            <div class="logo" aria-hidden="true" style="width:36px; height:36px; border-radius:14px"></div>
+            <div>
+              <b>The Enlightened Path</b>
+              <div style="font-size:12px; color:var(--muted2); font-weight:800">Hope • Stability • Practical support</div>
+            </div>
+          </div>
+          <small>
+            © <span id="y"></span> The Enlightened Path. All rights reserved. Starter template.
+            Replace placeholder contact info and connect forms/donations when ready.
+          </small>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#mission">Mission</a>
+          <a class="btn" href="#apply">Request help</a>
+          <a class="btn warm" href="#donate">Donate</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    function setNote(msg){ const el = document.getElementById('formNote'); if(el) el.textContent = msg; }
+    document.getElementById('helpForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name')?.value?.trim();
+      const email = document.getElementById('email')?.value?.trim();
+      const need = document.getElementById('need')?.value;
+      const msg = document.getElementById('message')?.value?.trim();
+      if(!name || !email || !need || !msg){
+        setNote('Please complete all required fields. This is a demo form until you connect it to email/form service.');
+        return;
+      }
+      setNote('Thanks — your request is ready. Next step: connect this form to Formspree/Basin or a backend to receive submissions.');
+      alert('Demo only: form submitted locally.');
+      e.target.reset();
+    });
+    window.fakeLink = function(ev, msg){ ev.preventDefault(); alert(msg); return false; }
+  </script>
+</body>
+</html>
